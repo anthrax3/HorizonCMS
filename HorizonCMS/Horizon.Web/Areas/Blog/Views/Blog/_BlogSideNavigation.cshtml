@@ -1,0 +1,16 @@
+﻿<aside>
+    <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        @Html.Partial("_Partials/_MyProfile")
+
+    </div>
+    <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12 well">
+        @Html.Partial("_Partials/_Search")
+
+    </div>
+    <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12 well">
+        @Html.Partial("_Partials/_Categories", ViewBag.Categories as List<Horizon.Web.Models.PostCategory>)
+    </div>
+    <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12 well">
+        @Html.Partial("_Partials/_BlogMostReadPosts", ViewBag.MostReadPost as List<Horizon.Web.Models.Post>)
+    </div>
+</aside>

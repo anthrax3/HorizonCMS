@@ -1,0 +1,22 @@
+﻿@model Horizon.Web.Models.Post
+@{
+    Layout = "~/Areas/Blog/Views/Shared/_BlogLayout.cshtml";
+}
+<div class="container-fluid">
+    @Html.Partial("Controls/_BreadCrumb", ViewBag.BreadCrumb as Horizon.Web.Models.BreadCrumb)
+    <div class="row section">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-md-offset-1 col-lg-7 col-lg-offset-1">
+            @Html.Partial("_Partials/_PostContent", Model as Horizon.Web.Models.Post)
+            
+        
+            <h3>Related posts</h3>
+            @Html.Partial("_Partials/_Relatedposts",ViewBag.RelatedPosts as List<Horizon.Web.Models.Post>)
+
+        </div>
+        <div class="col-xs-12-col-sm-12 col-md-3 col-lg-3">
+            @Html.Partial("_BlogSideNavigation")
+        </div>
+    </div>
+</div>
+
+

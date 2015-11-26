@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html style="background: linear-gradient(180deg,rgba(237,41,69,1.0),rgba(194,36,57,1.0) ) repeat; height: 100%;" lang="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO TAGS -->
+    <meta name="description" content="informative description here" />
+    <meta name="generator" content="" />
+    <meta name="author" content="Sol Marzellier Traductores" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="follow" />
+    <meta name="image" content="" />
+    <!-- END SEO TAGS -->
+    <title>@ViewBag.Title - Sol Marzellier Traductores - El genuino sentido </title>
+    @Styles.Render("~/Content/css") @Scripts.Render("~/bundles/modernizr")
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800' rel='stylesheet' type='text/css'>
+</head>
+<body style="background: url(/Content/noise.png) repeat; height:100%;">
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery") @Scripts.Render("~/bundles/bootstrap")@RenderSection("scripts", required: false)
+</body>
+</html>

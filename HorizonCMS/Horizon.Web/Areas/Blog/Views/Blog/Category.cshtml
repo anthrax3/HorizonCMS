@@ -1,0 +1,20 @@
+﻿@model Horizon.Web.Models.Blog
+@{
+    Layout = "~/Areas/Blog/Views/Shared/_BlogLayout.cshtml";
+}
+<div class="container">
+    <div class="row section">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            @Html.Partial("Controls/_BreadCrumb", ViewBag.BreadCrumb as Horizon.Web.Models.BreadCrumb)
+            @foreach(var post in ViewBag.Posts as List<Horizon.Web.Models.Post>)
+            { 
+                @Html.Partial("_PostType/_TextPost", post as Horizon.Web.Models.Post)
+            }
+        </div>
+        <div class="col-xs-12-col-sm-12 col-md-4 col-lg-4">
+            @Html.Partial("_BlogSideNavigation")
+        </div>
+
+    </div>
+</div>
+

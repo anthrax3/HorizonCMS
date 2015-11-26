@@ -1,0 +1,58 @@
+﻿@model List<Horizon.Web.Models.Comment>
+<section class="comments">
+
+    @if (Model.Count > 0)
+    {
+        <h2 class="h3">Comments</h2>
+        foreach (var comment in Model)
+        {
+            <article class="comment">
+
+                <header>
+                    <h3 class="h5">Posted by: @comment.Author.Name</h3>
+                    <p><time pubdate datetime="@comment.CreateDate.Date.ToShortDateString()T19:10-08:00">@comment.CreateDate</time></p>
+                </header>
+                <p class="excerpt">@comment.Content</p>
+            </article>
+         if (User.Identity.IsAuthenticated)
+        {
+            // Show Form
+        }
+        else
+        {
+            <p>
+                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> Log on</button> or <button type="button" class="btn btn-info">Register</button>
+            </p>
+        }
+        }
+    }
+    else
+    {
+        <h2>No comments for the moment</h2>
+        <p>Be the first to comment </p>
+        if (User.Identity.IsAuthenticated)
+        {
+            // Show Form
+        }
+        else
+        {
+            <p>
+                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> Log on</button> or <button type="button" class="btn btn-info">Register</button>
+            </p>
+        }
+    }
+</section>
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.PstId)
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @Html.LabelFor(m => m.Content)
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @Html.TextAreaFor(m => m.Content, new { @class = "col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control", @cols = "4200", @rows = "10" })
+            </div>
+        </div>
+
+    }*@

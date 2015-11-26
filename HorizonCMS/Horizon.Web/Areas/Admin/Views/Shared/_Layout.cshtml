@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="" dir="" class="html-admin">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- SEO TAGS -->
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="generator" content="@ViewBag.Generator" />
+    <meta name="author" content="Horizon CMS" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <meta name="canonical" content="www.smtraductores.com" />
+    <meta name="robots" content="follow" />
+    <meta name="image" content="" />
+    <!-- END SEO TAGS -->
+    <title>@ViewBag.Title - Sol Marzellier Traductores - El genuino sentido </title>@Styles.Render("~/Content/css") @Styles.Render("~/Content/admin") @Scripts.Render("~/bundles/modernizr")
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css' />
+</head>
+<body class="body-admin">
+    <div class="container-fluid height_100" id="upper-menu">
+        <div class="row">
+            <nav class="navbar-collapse collapse" role="navigation" style="background:#3d3d3d;">
+                <ul class="list-unstyled" style="min-height:48px; padding:16px 0 0 0;">
+                    <li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><strong class="inverse">Your company logo here</strong></li>
+                    <li class="col-xs-12 col-sm-12 col-md-10 col-lg-10 inverse">
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row height_100">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 panel-left height_100 f_left">
+                @Html.Partial("Partials/_UserProfile")
+                @Html.Partial("Partials/_AdminSections")
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10" style="background: #f5f5f5;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+ 
+  
+    @*@Scripts.Render("~/bundles/respond")*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/chart-js")
+    @Scripts.Render("~/bundles/intelliTable-js")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+            $(".list-group-item > a").on("click", function () {
+                $(this).parent().toggleClass("active");
+            });
+        });
+        //var d = 360;
+        //var myVar = setInterval(function () { myTimer() }, 1000);
+
+        //function myTimer() {
+
+        //    if (d == 0) {
+        //        window.clearTimeout(myVar);
+        //        $("#myModal").modal({ keyboard: false, backdrop: 'static' });
+        //        $("#myModal").modal('show');
+        //    }
+        //    else {
+        //        d = d - 1;
+        //    }
+        //}
+    </script>
+
+</body>
+</html>
+
+
+

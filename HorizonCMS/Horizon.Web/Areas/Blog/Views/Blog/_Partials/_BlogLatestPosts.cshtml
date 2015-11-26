@@ -1,0 +1,18 @@
+﻿@model Horizon.Web.Models.Blog
+@if (Model.Posts.Count > 0)
+{
+    foreach (var post in Model.Posts)
+    {
+            @Html.Partial("_PostType/_TextPost", post)
+      
+
+    }
+
+}
+else
+{
+    <div class="col-md-12 col-sm-12 col-md-12 col-lg-12">
+        <h3>Oooops! No posts yet</h3>
+        <p>Come within an hour or later</p>
+    </div>
+}

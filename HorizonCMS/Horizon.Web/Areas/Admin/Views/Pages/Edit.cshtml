@@ -1,0 +1,107 @@
+﻿@model Horizon.Web.Models.Page
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(m => m.Id)
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Introduzca el título" })
+                @Html.ValidationMessageFor(model => model.Title)
+
+            </div>
+
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = "Introduzca la descripción" })
+                @Html.ValidationMessageFor(model => model.Description)
+
+            </div>
+
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.Content, new { @class = "mceNoEditor" })
+                @Html.ValidationMessageFor(model => model.Content)
+
+            </div>
+
+
+            <div class="form-group">
+                @Html.DropDownList("TplId", String.Empty)
+                @Html.ValidationMessageFor(model => model.TplId)
+            </div>
+
+
+            <div class="form-group">
+                @Html.DropDownList("LngId", String.Empty)
+                @Html.ValidationMessageFor(model => model.LngId)
+            </div>
+
+            <div class="form-group">
+                @Html.DropDownList("PrntId", String.Empty)
+                @Html.ValidationMessageFor(model => model.PrntId)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsDefault, new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.IsDefault)
+                @Html.ValidationMessageFor(model => model.IsDefault)
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="form-group">
+            <label>Keywords</label>
+            <ul class="list-unstyled">
+                @foreach (var keywords in ViewBag.Keywords as List<Horizon.Web.Models.Keyword>)
+                {
+                    <li>
+                        <input type="checkbox" name="Keywords" id="Keywords" value="@keywords.Id" checked="@Model.Keywords.Contains(keywords)" />
+                        <span>@keywords.KeywordName</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/TinyMCE")
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            theme: "modern",
+            plugins: [
+                "advlist autolink lists link image charmap preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern imagetools"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            //toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true,
+            //templates: [
+            //    { title: 'Test template 1', content: 'Test 1' },
+            //    { title: 'Test template 2', content: 'Test 2' }
+            //],
+            valid_element: "+span[id|name|class|style],+span[*],+div[*],+section[class],+h1,+h2,+h3,+h4,+h5,+div[class]",
+            valid_children: "+span[id|name|class|style],+span[*],+div[*],+h1[*],+h2[*]"
+        });
+    </script>
+}

@@ -1,0 +1,14 @@
+﻿@model Horizon.Web.Areas.Error.Models.ErrorViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="row error">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+        <h2 class="title text-uppercase text-center">@Model.Title</h2>
+        <p class="subtitle text-center">@Model.subTitle</p>
+        <p class="description">@Model.Message</p>        
+    </div>
+</section>

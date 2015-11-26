@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Horizon.Web.Models.PostCategory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span class="glyphicon glyphicon-file"></span> Páginas
+                </a>
+            </h4>
+        </div>
+        <div id="createPostCategory" class="Panel-collapse collapse in" role="tabpanel" aria-labelledby="">
+            <div class="panel-body">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CategoryName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="listPostCategoryHeading">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#listPostCategory" aria-expanded="true" aria-controls="listPostCategory">
+                    <span class="glyphicon glyphicon-file"></span> Páginas
+                </a>
+            </h4>
+        </div>
+        <div id="listPostCategory" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="listPostCategory">
+            <div class="panel-body">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    @Html.Partial("Create", new Horizon.Web.Models.PostCategory())
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+

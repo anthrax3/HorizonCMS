@@ -1,0 +1,12 @@
+﻿@model List<Horizon.Web.Models.PostCategory>
+<h3>Categories</h3>
+<div class="list-group">
+    @foreach (var category in ViewBag.Categories as List<Horizon.Web.Models.PostCategory>)
+        {
+            <a href="@Url.RouteUrl("blog-category-view", new { categoryname = category.CategoryName })" class="list-group-item">
+                <span class="badge bg-info">@category.Posts.Count</span>
+                @category.Name
+            </a>
+        }
+    <a href="@Url.RouteUrl("blog-categories")" class="list-group-item">Ver todas</a>
+</div>

@@ -1,0 +1,78 @@
+﻿@model Horizon.Web.Models.Post
+@{
+    int index = 0;
+}
+<article class="blog-post">
+    @if (Model.Images != null && Model.Images.Count > 0)
+    {
+        if (Model.Images.Count == 1)
+        {
+            <div class="img-container" style="max-width:100%; max-height:320px; overflow:hidden; margin:0; padding:0;">
+                <img class="img-responsive blog-image" src="/Media/@Model.Images.FirstOrDefault().FileUrl" />
+            </div>
+        }
+        else
+        {
+
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Carousel indicators -->
+                <ol class="carousel-indicators">
+                    @foreach (var image in Model.Images)
+                    {
+
+                        <li data-target="#myCarousel" data-slide-to="@index" class="active"></li>
+                        index++;
+                    }
+                </ol>
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                    @foreach (var image in Model.Images)
+                    {
+                        if (image.Equals(Model.Images.ElementAt(0)))
+                        {
+                            <div class="item active">
+                                <img src="/Media/@image.FileUrl" alt="@image.Description">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item ">
+                                <img src="/Media/@image.FileUrl" alt="@image.Description">
+                            </div>
+                        }
+                    }
+                </div>
+                <!-- Carousel controls -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        }
+    }
+    <header>
+        <span class="category">@Model.Category.Name</span>
+
+        
+            <h1> @Model.Title</h1>
+
+
+        <span class="glyphicon glyphicon-time"></span> <strong><time pubdate="pubdate">@Model.CreateDate.ToShortDateString()</time></strong>
+    </header>
+    <div class="content">@Html.Raw(Model.Content)</div>
+    <footer>
+      
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">@Model.Comments.Count <span class="glyphicon glyphicon-comment"></span></button>
+                <button type="button" class="btn btn-default">@Model.Viewed <span class="glyphicon glyphicon-eye-open"></span></button>
+                <button type="button" class="btn btn-default">@Model.Loved <span class="glyphicon glyphicon-heart"></span></button>
+                <button type="button" class="btn btn-default">@Model.Shared <span class="glyphicon glyphicon-envelope"></span></button>
+            </div>
+
+        </div>
+    </footer>
+    @Html.Partial("_Partials/_Comments", Model.Comments.ToList())
+</article>

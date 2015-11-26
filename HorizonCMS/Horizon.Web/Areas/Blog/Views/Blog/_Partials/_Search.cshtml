@@ -1,0 +1,10 @@
+﻿@using (Html.BeginForm("Search","Blog"))
+{
+    @Html.AntiForgeryToken()
+    <div class="input-group">
+        <input name="searchterm" id="searchterm" type="text" class="form-control" placeholder="Search for..." required>
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+    </div>
+}

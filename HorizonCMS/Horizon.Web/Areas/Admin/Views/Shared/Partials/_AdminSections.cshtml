@@ -1,0 +1,12 @@
+﻿<ul class="list-group">
+    @foreach (var _section in ViewBag.Sections)
+{
+    <li class="list-group-item @Html.Action("IsActive", new { section =  _section.Controller })">
+        <span class="glyphicon glyphicon-@_section.Glyphicon"></span> <a href="/@Horizon.Web.Helpers.CultureHelper.GetCurrentCulture/admin/@_section.Controller">@_section.Title</a>
+        @if (_section.Title.Equals("Dashboard"))
+        {
+            <span class="badge text-right">@ViewBag.Notifications.Count</span>
+        }
+    </li>
+}
+</ul>

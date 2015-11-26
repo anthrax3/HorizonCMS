@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "View1";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@Html.AntiForgeryToken()
+<ol class="breadcrumb"><li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li><li><span class="glyphicon glyphicon-lock"></span> Blog</li></ol>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="horizon-panel horizon-panel-warning">
+        <div class="horizon-panel-title">
+            Users <div id="usersLoader" class="panel-loader"></div>
+        </div>
+        <div class="horizon-panel-body">
+            <table id="usersTable" class="table table-striped intellitable">
+                <thead></thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="horizon-panel horizon-panel-warning">
+        <div class="horizon-panel-title">
+            Roles <div id="rolesLoader" class="panel-loader"></div>
+        </div>
+        <div class="horizon-panel-body">
+            <table id="rolesTable" class="table table-striped intellitable">
+                <thead></thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var usersOptions = {
+                loaderSelector: "#usersLoader",
+                services: {
+                    create: 'users/createUsers',
+                    retrieve: 'users/getUsers',
+                    update: 'users/updateUsers',
+                    remove: 'users/removeUsers'
+                },
+                token: $('input[name="__RequestVerificationToken"]').val(),
+                cols: [{ name: "Id", sortable: false, principal: true, type: "string", searchable: false },
+                    { name: "Name", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "Email", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "Description", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "CreateDate", sortable: false, principal: false, type: "date", searchable: false },
+                    { name: "IsActive", sortable: false, principal: false, type: "bool", searchable: false },
+                 { name: "IsLocked", sortable: false, principal: false, type: "bool", searchable: false }],
+                page: 1,
+                records: 10,
+                entity: 'Users',
+                orderBy: 'CreateDate',
+                orderDirection: 'Desc',
+                showNavigation: true,
+                showControls: true
+            };
+            $('#usersTable').intelliTable(usersOptions);
+
+            var usersOptions = {
+                loaderSelector: "rolesLoader",
+                services: {
+                    create: 'roles/createRoles',
+                    retrieve: 'roles/getRoles',
+                    update: 'roles/updateRoles',
+                    remove: 'roles/removeRoles'
+                },
+                token: $('input[name="__RequestVerificationToken"]').val(),
+                cols: [{ name: "Id", sortable: false, principal: true, type: "string", searchable: false },
+                    { name: "Name", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "Description", sortable: false, principal: false, type: "string", searchable: false }],
+                page: 1,
+                records: 10,
+                entity: 'Roles',
+                orderBy: 'Name',
+                orderDirection: 'Desc',
+                showNavigation: true,
+                showControls: true
+            };
+            $('#rolesTable').intelliTable(usersOptions);
+        });
+    </script>
+}

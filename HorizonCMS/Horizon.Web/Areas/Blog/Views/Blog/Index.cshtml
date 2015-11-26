@@ -1,0 +1,46 @@
+﻿@model Horizon.Web.Models.Blog
+@{
+    Layout = "~/Areas/Blog/Views/Shared/_BlogLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row section">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-md-offset-1 col-lg-7 col-lg-offset-1">
+            @Html.Partial("_Partials/_BlogLatestPosts")
+            @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="min-height:48px;"><br /></div>
+            @Html.Partial("_BlogFeaturedPost")*@
+        </div>
+        <div class="col-xs-12-col-sm-12 col-md-3 col-lg-3">
+            @Html.Partial("_BlogSideNavigation")
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //$.each($(".blog-image"), function (index, id) {
+
+            //    $(this).on("mouseenter", function () {
+            //        $(this).animate({
+            //            'margin-top': '-=' + $(this).height() / 2 + 'px',
+            //            'margin-left': '-=' + $(this).width() / 2 + 'px',
+            //            'max-width': '' + $(this).width() * 1.5 + 'px',
+            //            height: 'auto',
+            //            opacity: '0.45'
+            //        }, 500, function () { return null; });
+            //    });
+            //}).on("mouseleave", function () {
+            //    $(this).animate({
+            //        'margin-top': "0px",
+            //        'margin-left': "0px",
+            //        'max-width': '100%',
+            //        height: 'auto',
+            //        opacity: '1.0'
+            //    }, 500, function () { return null; });
+            //});
+
+        });
+    </script>
+}

@@ -1,0 +1,18 @@
+﻿<h3>Most read posts</h3>
+@if (ViewBag.MostReadPosts != null)
+{
+    <div class="list-group">
+        @foreach (var post in ViewBag.MostReadPosts as List<Horizon.Web.Models.Post>)
+        {
+            <a class="list-group-item" href="@Url.RouteUrl("blog-post-view", new { year = @post.CreateDate.Year.ToString(), month = @post.CreateDate.Month.ToString("d2"), day = @post.CreateDate.Day.ToString("d2"), postname = @post.Title.ToLower().Replace(" ","-") })">
+                <span class="badge">@post.Viewed</span>
+                <strong>@post.Title</strong><br/>
+                <em>@post.Excerpt</em>
+            </a>
+        }
+    </div>
+}
+else
+{
+    <div class="col-md-12 col-sm-12 col-md-12 col-lg-12"><h3>Oooops! No posts yet</h3><p>Come within an hour or later</p></div>
+}

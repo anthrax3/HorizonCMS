@@ -1,0 +1,30 @@
+﻿@model Horizon.Web.Models.Post
+<article class="blog-post">
+    <div class="img-container" style="max-width:100%; max-height:320px; overflow:hidden; margin:0; padding:0;">
+        <img class="img-responsive blog-image" src="/Content/marbella-beaches.jpg" />
+    </div>
+    <header>
+        <span class="category">@Model.Category.Name</span>
+        <a href="@Url.RouteUrl("blog-post-view", new { year = Model.CreateDate.Year, month = Model.CreateDate.Month.ToString("d2"), day = Model.CreateDate.Day.ToString("d2"), postname = Model.Title.Replace(" ","-").ToLowerInvariant() })">
+            <h1> @Model.Title</h1>
+
+        </a>
+
+        <span class="glyphicon glyphicon-time"></span> <strong><time pubdate="pubdate">@Model.CreateDate.ToShortDateString()</time></strong>
+    </header>
+    <p class="excerpt">@Model.Excerpt</p>
+    <footer>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <a class="btn btn-info" href="@Url.RouteUrl("blog-post-view", new { year = @Model.CreateDate.Year.ToString(), month = @Model.CreateDate.Month.ToString("d2"), day = @Model.CreateDate.Day.ToString("d2"), postname = @Model.Title.ToLower().Replace(" ", "-") })">
+           <span class="glyphicon glyphicon-ok"></span> Read more</a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">@Model.Viewed <span class="glyphicon glyphicon-eye-open"></span></button>
+                <button type="button" class="btn btn-default">@Model.Loved <span class="glyphicon glyphicon-heart"></span></button>
+                <button type="button" class="btn btn-default">@Model.Shared <span class="glyphicon glyphicon-envelope"></span></button>
+            </div>
+
+        </div>
+    </footer>
+</article>

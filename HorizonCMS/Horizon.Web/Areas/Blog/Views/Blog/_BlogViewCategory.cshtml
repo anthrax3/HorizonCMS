@@ -1,0 +1,15 @@
+﻿@model Horizon.Web.Models.PostCategory
+<article class="blog-post">
+    <header>
+        <span class="category">@Model.Name</span>
+        <h1>@Model.Name</h1>
+        @*<span class="glyphicon glyphicon-time"></span> <strong>
+        <time pubdate="pubdate">@Model.CreateDate.ToShortDateString()</time></strong>*@
+    </header>
+    <p class="excerpt">@Model.Description</p>
+    <footer>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Read more</button>
+        </div>
+    </footer>
+</article>

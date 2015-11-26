@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@Html.AntiForgeryToken()
+<ol class="breadcrumb"><li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li><li><span class="glyphicon glyphicon-dashboard"></span> Dashboard</li></ol>
+@if (User.IsInRole("SuperAdmin"))
+{
+    Html.RenderPartial("../Shared/Partials/_Statistics");
+}
+<!-- NOTIFICATIONS -->
+
+<!-- REMOVE MODAL -->
+<div class="modal fade" id="removeModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Remove selected elements</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <input type="hidden" id="parameters" value="" />
+                <button id="cancelButton" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="acceptButton" type="button" class="btn btn-success">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="horizon-panel horizon-panel-warning">
+        <div class="horizon-panel-title">
+            Your notifications <div id="notificationsLoader" class="panel-loader"></div>
+        </div>
+        <div class="horizon-panel-body">
+            <table id="notificationsTable" class="table table-striped intellitable">
+                <thead></thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            //$('#carousel-example-generic').carousel({
+            //    interval: false
+            //})
+            debugger;
+            var options = {
+                loaderSelector: "#notificationsLoader",
+                services: {                    
+                    create: 'dashboard/createNotification',
+                    retrieve: 'dashboard/getNotifications',
+                    update: 'dashboard/updateNotification',
+                    remove: 'dashboard/removeNotifications'
+                },
+                token: $('input[name="__RequestVerificationToken"]').val(),
+                cols: [{ name: "Id", sortable: false, principal: true, type: "string", searchable: false },
+                    { name: "Title", sortable: true, principal: false, type: "string", searchable: true },
+                    { name: "CreateDate", sortable: true, principal: false, type: "date", searchable: true },
+                    { name: "Status", sortable: true, principal: false, type: "string", searchable: true }],
+                page: 1,
+                records: 10,
+                entity: 'Notifications',
+                orderBy: 'CreateDate',
+                orderDirection: 'Asc',
+                showNavigation: true,
+                showControls: true
+            };
+            $('#notificationsTable').intelliTable(options);
+
+            var ctx = new Array();
+            ctx.push(document.getElementById("myChart").getContext("2d"));
+
+            var options = {
+                //Boolean - Whether we should show a stroke on each segment
+                segmentShowStroke: true,
+
+                //String - The colour of each segment stroke
+                segmentStrokeColor: "#fff",
+
+                //Number - The width of each segment stroke
+                segmentStrokeWidth: 1,
+
+                //Number - The percentage of the chart that we cut out of the middle
+                percentageInnerCutout: 90, // This is 0 for Pie charts
+
+                //Number - Amount of animation steps
+                animationSteps: 100,
+
+                //String - Animation easing effect
+                animationEasing: "easeOutBounce",
+
+                //Boolean - Whether we animate the rotation of the Doughnut
+                animateRotate: false,
+
+                //Boolean - Whether we animate scaling the Doughnut from the centre
+                animateScale: false,
+
+                //String - A legend template
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
+            };
+            var myDoughnutChart = new Chart(ctx[0]).Doughnut([
+            {
+                value: 75,
+                color: "#F7464A",
+                highlight: "#FF5A5E",
+                label: "Red"
+            },
+            {
+                value: 25,
+                color: "#ccc",
+                highlight: "#FFC870",
+                label: "Yellow"
+            }
+            ], options);
+
+        });
+    </script>
+}

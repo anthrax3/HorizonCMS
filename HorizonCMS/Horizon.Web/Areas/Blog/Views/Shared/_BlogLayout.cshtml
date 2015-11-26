@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html style="background:#f3f3f3;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feedpress.me/mozblog" />
+    <meta name="description" content="@ViewBag.Description" />
+
+    <link rel="canonical" href="" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="toggled" id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid blog">
+
+                <div class="row first text-center">
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+                            <span class="glyphicon glyphicon-menu-up"></span>
+                        </a>
+                    </div>
+                    <img class="img-circle profile-photo" width="150" src="/Content/foto_eduardo_macho2.jpg">
+                    <h1>@ViewBag.Title</h1>
+                    <p>@ViewBag.Name</p>
+                    <div class="visible-md col-md-2 col-md-offset-5 visible-lg col-lg-2 col-lg-offset-5">
+                        <span class="social-badge linkedin text-center"></span>
+                        <span class="social-badge css3 text-center"></span>
+                        <span class="social-badge html5 text-center"></span>
+                        <span class="social-badge twitter text-center"></span>
+                        @*<span class="social-badge youtube text-center"></span>*@
+                    </div>
+
+                </div>
+            </div>
+            @RenderBody()
+            <div class="container-fluid">
+                <footer class="row footer">
+
+
+
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+
+                        <p>
+                            Eduardo Macho
+
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <h4 class="text-uppercase">About</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">About me</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <h4 class="text-uppercase">Categories</h4>
+                        <ul class="list-unstyled">
+                            <li>Link 1</li>
+                            <li>Link 2</li>
+                            <li>Link 3</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <h4 class="text-uppercase">Connect</h4>
+                        <p>Other information</p>
+                    </div>
+
+
+
+                </footer>
+            </div>
+        </div></div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#menu-toggle").click(function (e) {
+
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });
+            });
+
+        </script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@Html.AntiForgeryToken()
+<ol class="breadcrumb"><li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li><li><span class="glyphicon glyphicon-comment"></span> Blog</li></ol>
+@*@if (User.IsInRole("SuperAdmin"))
+    {
+        Html.RenderPartial("../Shared/Partials/_Statistics");
+    }*@
+<!-- NOTIFICATIONS -->
+<div class="modal fade" id="removeModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Remove selected elements</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <input type="hidden" id="parameters" value="" />
+                <button id="cancelButton" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="acceptButton" type="button" class="btn btn-success">Remove</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="horizon-panel horizon-panel-warning">
+        <div class="horizon-panel-title">
+            Blog <div id="notificationsLoader" class="panel-loader"></div>
+        </div>
+        <div class="horizon-panel-body">
+            <table id="notificationsTable" class="table table-striped intellitable">
+                <thead></thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#settings" role="tab" data-toggle="tab">Blog Settings</a></li>
+        <li><a href="#posts" role="tab" data-toggle="tab">Blog posts</a></li>
+        <li><a href="#types" role="tab" data-toggle="tab">Post types</a></li>
+        <li><a href="#categories" role="tab" data-toggle="tab">Post categories</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="settings">
+            <div class="horizon-panel horizon-panel-warning">
+                <div class="horizon-panel-title">
+                    Posts <div id="blogPostsLoader" class="panel-loader"></div>
+                </div>
+                <div class="horizon-panel-body">
+                    <table id="postsTable" class="table table-striped intellitable">
+                        <thead></thead>
+                        <tbody></tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="posts">
+            <div class="horizon-panel horizon-panel-warning">
+                <div class="horizon-panel-title">
+                    Posts types <div id="blogPostsTypesLoader" class="panel-loader"></div>
+                </div>
+                <div class="horizon-panel-body">
+                    <table id="blogPostsTypesTable" class="table table-striped intellitable">
+                        <thead></thead>
+                        <tbody></tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="types"><div class="horizon-panel horizon-panel-warning">
+    <div class="horizon-panel-title">
+        Posts categories <div id="blogPostsCategoriesLoader" class="panel-loader"></div>
+    </div>
+    <div class="horizon-panel-body">
+        <table id="blogPostsCategoriesTable" class="table table-striped intellitable">
+            <thead></thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</div></div>
+        <div class="tab-pane" id="categories">...</div>
+    </div>
+    
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var blogOptions = {
+                loaderSelector: "#notificationsLoader",
+                services: {
+                    create: 'blogs/createBlogs',
+                    retrieve: 'blogs/getBlogs',
+                    update: 'blogs/updateBlogs',
+                    remove: 'blogs/removeBlogs'
+                },
+                token: $('input[name="__RequestVerificationToken"]').val(),
+                cols: [{ name: "Id", sortable: false, principal: true, type: "string", searchable: false },
+                    { name: "Name", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "Description", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "IsActive", sortable: false, principal: false, type: "bool", searchable: false }],
+                page: 1,
+                records: 10,
+                entity: 'Blogs',
+                orderBy: 'Id',
+                orderDirection: 'Asc',
+                showNavigation: false,
+                showControls: false
+            };
+            $('#notificationsTable').intelliTable(blogOptions);
+
+            var postsOptions = {
+                loaderSelector: "#blogPostsLoader",
+                services: {
+                    create: 'blogs/createPosts',
+                    retrieve: 'blogs/getPosts',
+                    update: 'blogs/updatePosts',
+                    remove: 'blogs/removePosts'
+                },
+                token: $('input[name="__RequestVerificationToken"]').val(),
+                cols: [{ name: "Id", sortable: false, principal: true, type: "string", searchable: false },
+                    { name: "Title", sortable: true, principal: false, type: "string", searchable: true },
+                    { name: "Loved", sortable: true, principal: false, type: "string", searchable: false },
+                    { name: "Viewed", sortable: true, principal: false, type: "string", searchable: false }],
+                page: 1,
+                records: 10,
+                entity: 'Posts',
+                orderBy: 'Id',
+                orderDirection: 'Asc',
+                showNavigation: true,
+                showControls: true
+            };
+            $('#postsTable').intelliTable(postsOptions);
+
+            var blogPostsTypesOptions = {
+                loaderSelector: "#blogPostsTypesLoader",
+                services: {
+                    create: 'blogs/createPostsTypes',
+                    retrieve: 'blogs/getPostsTypes',
+                    update: 'blogs/updatePostsTypes',
+                    remove: 'blogs/removePostsTypes'
+                },
+                token: $('input[name="__RequestVerificationToken"]').val(),
+                cols: [{ name: "Id", sortable: false, principal: true, type: "string", searchable: false },
+                    { name: "Name", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "Description", sortable: false, principal: false, type: "string", searchable: false }],
+                page: 1,
+                records: 10,
+                entity: 'Posts',
+                orderBy: 'Id',
+                orderDirection: 'Asc',
+                showNavigation: true,
+                showControls: true
+            };
+            $('#blogPostsTypesTable').intelliTable(blogPostsTypesOptions);
+
+            var blogPostsCategoriesOptions = {
+                loaderSelector: "#blogPostsCategoriesLoader",
+                services: {
+                    create: 'blogs/createPostsCategories',
+                    retrieve: 'blogs/getPostsCategories',
+                    update: 'blogs/updatePostsCategories',
+                    remove: 'blogs/removePostsCategories'
+                },
+                token: $('input[name="__RequestVerificationToken"]').val(),
+                cols: [{ name: "Id", sortable: false, principal: true, type: "string", searchable: false },
+                    { name: "Name", sortable: false, principal: false, type: "string", searchable: false },
+                    { name: "Description", sortable: false, principal: false, type: "string", searchable: false }],
+                page: 1,
+                records: 10,
+                entity: 'Posts',
+                orderBy: 'Id',
+                orderDirection: 'Asc',
+                showNavigation: true,
+                showControls: true
+            };
+            $('#blogPostsCategoriesTable').intelliTable(blogPostsCategoriesOptions);
+
+            //var ctx = new Array();
+            //ctx.push(document.getElementById("myChart").getContext("2d"));
+
+            //var options = {
+            //    //Boolean - Whether we should show a stroke on each segment
+            //    segmentShowStroke: true,
+
+            //    //String - The colour of each segment stroke
+            //    segmentStrokeColor: "#fff",
+
+            //    //Number - The width of each segment stroke
+            //    segmentStrokeWidth: 1,
+
+            //    //Number - The percentage of the chart that we cut out of the middle
+            //    percentageInnerCutout: 90, // This is 0 for Pie charts
+
+            //    //Number - Amount of animation steps
+            //    animationSteps: 100,
+
+            //    //String - Animation easing effect
+            //    animationEasing: "easeOutBounce",
+
+            //    //Boolean - Whether we animate the rotation of the Doughnut
+            //    animateRotate: false,
+
+            //    //Boolean - Whether we animate scaling the Doughnut from the centre
+            //    animateScale: false,
+
+            //    //String - A legend template
+            //    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+
+            //};
+            //var myDoughnutChart = new Chart(ctx[0]).Doughnut([
+            //{
+            //    value: 75,
+            //    color: "#F7464A",
+            //    highlight: "#FF5A5E",
+            //    label: "Red"
+            //},
+            //{
+            //    value: 25,
+            //    color: "#ccc",
+            //    highlight: "#FFC870",
+            //    label: "Yellow"
+            //}
+            //], options);
+
+        });
+    </script>
+}

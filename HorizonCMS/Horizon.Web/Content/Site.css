@@ -1,7 +1,20 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: #3d3d3d;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    line-height: 1.6em;
+    font-weight: 300;
+    margin: 0;
+    width: 100%;
 }
+
+section {
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -39,4 +52,302 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+.footer {
+    background: #2e3234;
+    color: #fff;
+    padding: 5em 3em 3em 3em;
+}
+
+footer ul li a {
+    display: block;
+    /*border-bottom: 1px solid #5f5f5f;*/
+    /*margin: 1em 0em;*/
+    /*text-transform: uppercase;*/
+    color: #cfcfcf;
+    font-weight: 600;
+    font-size: 1.0em;
+    padding: 0.5em 0 0 0;
+    transition: linear 0.5s color;
+}
+
+    footer ul li a:hover {
+        /*border-bottom: 1px solid #5f5f5f;*/
+        /*margin: 1em 0em;*/
+        /*text-transform: uppercase;*/
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.0em;
+        padding: 0.5em 0 0 0;
+    }
+
+    footer ul li a:active {
+        /*border-bottom: 1px solid #5f5f5f;*/
+        /*margin: 1em 0em;*/
+        /*text-transform: uppercase;*/
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.0em;
+        padding: 0.5em 0 0 0;
+        outline: none;
+    }
+
+/* BLOG STYLES */
+
+.blog {
+    color: #3d3d3d;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    line-height: 1.6em;
+    font-weight: 300;
+    width: 100%;
+}
+
+    .blog .first {
+        background: url(/Content/congruent_pentagon.jpg) repeat;
+        background-attachment: fixed;
+        color: #fff;
+        min-height: 15em;
+        padding: 4em 0;
+        /*text-shadow: 1px 1px 2px #3d3d3d;*/
+    }
+
+article {
+    background: #fff;
+    padding: 0;
+    margin-bottom: 2em;
+}
+
+    article .excerpt {
+        color: #808080;
+        padding: 1em 0;
+    }
+
+.blog-post {
+    box-shadow: 1px 1px 12px 3px #e0e0e0;
+}
+
+    .blog-post .content {
+        font-size: 1.0em;
+        line-height: 1.8em;
+        padding: 1.25em;
+        color: #4a4a4a;
+        font-weight: 400;
+        text-align: justify;
+    }
+
+        .blog-post .content blockquote {
+            font-size: 1.4em;
+            font-weight: 400;
+        }
+
+    .blog-post header {
+        padding: 1em 1em 0em 1em;
+    }
+
+        .blog-post header h1 {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .blog-post header .category {
+            color: #808080;
+            text-transform: uppercase;
+        }
+
+    .blog-post .excerpt {
+        padding: 1em;
+    }
+
+    .blog-post footer {
+        display: table;
+        min-height: 4em;
+        width: 100%;
+    }
+
+.info-block {
+    border-top: 2px solid #3d3d3d;
+    border-bottom: 1px dotted #3d3d3d;
+    margin-top: 1em;
+    min-height: 2em;
+    font-weight: 400;
+}
+
+    .info-block .glyphicon {
+        display: block;
+        font-size: 1.4em;
+    }
+
+    .info-block .counter {
+        display: block;
+        font-size: 1.1em;
+    }
+
+    .info-block div {
+        border-right: 1px dotted #3d3d3d;
+        padding: 0.5em;
+    }
+
+        .info-block div:last-child {
+            border-right: none;
+            padding: 0.5em;
+        }
+
+.comments {
+    border-top: 3px solid #e84200;
+    padding: 0em 1em;
+}
+
+.comment {
+    border-top: 1px dotted #3d3d3d;
+}
+/* BLOG STYLES END */
+
+.profile-photo {
+    border: 6px solid rgba(255,255,255,0.6);
+}
+
+aside {
+    display: block;
+    border-top: 4px solid #e84200;
+}
+
+    aside .container {
+        background: #fff;
+        margin-bottom: 4em;
+    }
+
+/* SOCIAL MEDIA BADGES */
+.social-badge {
+    display: inline-block;
+    width: 2.5em;
+    height: 2.5em;
+    margin-bottom: 1em;
+}
+
+.linkedin {
+    background: url(/Content/32/linkedin32.png) no-repeat;
+    background-size: contain;
+}
+
+.css3 {
+    background: url(/Content/32/css3-32.png) no-repeat;
+    background-size: contain;
+}
+
+.html5 {
+    background: url(/Content/32/html5-32.png) no-repeat;
+    background-size: contain;
+}
+
+.twitter {
+    background: url(/Content/32/twitter32.png) no-repeat;
+    background-size: contain;
+}
+
+.youtube {
+    background: url(/Content/32/youtube32.png) no-repeat;
+    background-size: contain;
+}
+
+/* LOGIN FORM STYLES*/
+
+.login-form-control {
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 1.3em;
+    color: #c3c3c3;
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    display: block;
+    width: 100%;
+    height: 72px;
+    padding: 12px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    background-image: none;
+    margin: 8px 0 16px 0;
+    /*  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);*/
+    -webkit-transition: background-color linear .25s;
+    -o-transition: background-color linear .25s;
+    transition: background-color linear .25s;
+}
+
+
+input.login-form-control.input-validation-error {
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+}
+
+.valid {
+    border: 1px solid #3c763d;
+}
+
+
+.login-form-control:focus {
+    background-color: rgba(255,255,255,1);
+    color: #3d3d3d;
+}
+
+.login-form-control .input-validation-error {
+    color: #fff;
+}
+
+.login-form-button {
+    background: linear-gradient(180deg,rgba(237,41,69,1.0),rgba(194,36,57,1.0) ) no-repeat;
+    background-size: contain;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px #0f0f0f;
+    color: #f4f4f4;
+    width: 100%;
+    border: 1px solid #c22439;
+    height: 72px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.35em;
+}
+
+/* SECTIONS STYLES*/
+
+/* END SECTIONS STYLES */
+
+/* ICONS STYLES */
+
+.icon {
+    border: 1px solid #3d3d3d;
+    border-radius: 10em;
+    margin: 0 auto;
+    height: 10em;
+    width: 10em;
+}
+
+/* END ICONS STYLES*/
+
+/* ERROR PAGE STYLES*/
+
+.error .title {
+    font-family: 'Open Sans';
+    font-weight: 900;
+    font-size: 25em;
+    color: #ff006c;
+}
+
+.error .subtitle
+{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 2em;
+    color: #ff006c;
+}
+
+.error .description {
+    color: #3d3d3d;
+    font-size: 1.8em;
+    line-height: 1.5em;
 }

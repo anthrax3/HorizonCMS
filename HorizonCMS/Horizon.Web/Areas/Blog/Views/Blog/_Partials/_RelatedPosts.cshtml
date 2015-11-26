@@ -1,0 +1,24 @@
+﻿@model List<Horizon.Web.Models.Post>
+@if (Model.Count > 0)
+{
+    foreach (var post in Model)
+    {
+        if (post.PostType.Name.Equals("Image post"))
+        {
+            @Html.Partial("_PostType/_ImagePost", post)
+        }
+        else if (post.PostType.Name.Equals("Text post"))
+        {
+            @Html.Partial("_PostType/_TextPost", post)
+        }
+        else if (post.PostType.Name.Equals("Text post"))
+        {
+            @Html.Partial("_PostType/_VideoPost", post)
+        }
+    }
+
+}
+else
+{
+    <p>No related posts found!</p>
+}
